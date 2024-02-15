@@ -21,11 +21,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="min-h-screen flex flex-col items-around justify-between">
         <Nav />
         {children}
         <Footer />
       </body>
     </html>
   );
+}
+
+{
+  /* <body className={inter.className}></body> */
 }
