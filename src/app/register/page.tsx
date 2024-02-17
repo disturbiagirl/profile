@@ -13,7 +13,7 @@ export default function Register() {
         <input
           className="border-2 rounded-sm outline-gray-300 px-2 py-1"
           type="text"
-          placeholder="nickname"
+          placeholder="username"
         />
         <input
           className="border-2 rounded-sm outline-gray-300 px-2 py-1"
