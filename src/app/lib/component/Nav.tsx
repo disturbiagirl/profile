@@ -4,7 +4,7 @@ import LogoutForm from "./logoutForm";
 
 const Nav = async () => {
   const session = await getSession();
-  console.log(session);
+
   return (
     <div className="w-11/12 mx-auto md:w-10/12 lg:w-9/12">
       <nav className="flex flex-wrap items-center justify-between p-6 bg-white pb-9">
