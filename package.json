@@ -10,13 +10,14 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^5.11.0",
     "@prisma/client": "^5.11.0",
     "@types/bcrypt": "^5.0.2",
     "bcrypt": "^5.1.1",
     "iron-session": "^8.0.1",
     "next": "14.1.0",
     "next-auth": "^4.24.7",
-    "prisma": "^5.11.0",
+    "pg": "^8.11.3",
     "react": "^18",
     "react-dom": "^18"
   },
@@ -28,6 +29,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "postcss": "^8",
+    "prisma": "^5.11.0",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }
