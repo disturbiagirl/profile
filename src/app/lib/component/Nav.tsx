@@ -7,7 +7,7 @@ const Nav = async () => {
 
   return (
     <div className="w-11/12 mx-auto md:w-10/12 lg:w-9/12">
-      <nav className="flex flex-wrap items-center justify-between p-6 bg-white pb-9">
+      <nav className="flex flex-wrap items-center justify-between p-6 bg-white">
         <Link href="/" className="text-5xl font-bold">
           profile app.
         </Link>
