@@ -37,16 +37,13 @@ export default function SignUpForm() {
     resolver: zodResolver(FormSchema),
   });
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(e.target.value);
-  // };
-
   const saveUser: SubmitHandler<InputType> = async (data) => {
     try {
       const result = await registerUser(data);
       if (result.status === 200) {
         toast.success(result.message);
+      } else {
+        toast.error(result.message);
       }
     } catch (error) {
       toast.error("Something went wrong");

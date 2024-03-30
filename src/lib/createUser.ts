@@ -13,7 +13,7 @@ export const registerUser = async (data: Omit<User, "id">) => {
         password: data.password,
       },
     });
-
+    console.log(response);
     return {
       status: 200,
       message: "User created successfully",
