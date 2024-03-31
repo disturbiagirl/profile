@@ -5,6 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 
 const FormSchema = z
   .object({
@@ -29,6 +30,7 @@ const FormSchema = z
 type InputType = z.infer<typeof FormSchema>;
 
 export default function SignUpForm() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -42,6 +44,7 @@ export default function SignUpForm() {
       const result = await registerUser(data);
       if (result.status === 200) {
         toast.success(result.message);
+        router.push("/login");
       } else {
         toast.error(result.message);
       }
