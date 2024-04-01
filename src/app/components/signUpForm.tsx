@@ -24,7 +24,7 @@ const FormSchema = z
   })
   .refine((data) => data.password === data.repeatPassword, {
     message: "Password and confirm password doesn't match",
-    path: ["confirmPassword"],
+    path: ["repeatPassword"],
   });
 
 type InputType = z.infer<typeof FormSchema>;

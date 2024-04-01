@@ -1,6 +1,11 @@
+import { logout } from "@/actions";
+
 const LogoutForm = () => {
   return (
-    <form className="flex flex-col gap-2 items-center justify-center p-4 rounded-md pt-6">
+    <form
+      action={logout}
+      className="flex flex-col gap-2 items-center justify-center p-4 rounded-md pt-6"
+    >
       <button className=" bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-4 border border-gray-400 rounded shadow">
         Logout
       </button>
