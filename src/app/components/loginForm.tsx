@@ -26,6 +26,19 @@ const LoginForm = () => {
 
   const logIn: SubmitHandler<InputType> = async (data) => {
     console.log(data);
+    try {
+      const result = await login({
+        email: data.email,
+        password: data.password,
+      });
+
+      if (result.status === 200) {
+        router.push("/");
+      } else toast.warning(result.message);
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.error(error);
+    }
   };
 
   return (
