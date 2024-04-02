@@ -4,7 +4,7 @@ import { getIronSession } from "iron-session";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-let username = "test@test.com";
+let email = "test@test.com";
 
 export const getSession = async () => {
   const session = await getIronSession<SessionData>(cookies(), sessionOptions);
@@ -16,21 +16,21 @@ export const getSession = async () => {
   return session;
 };
 
-export const login = async (formData: FormData) => {
+export const login = async (data) => {
   const session = await getSession();
 
-  const formUsername = formData.get("username") as string;
+  const formEmail = formData.get("email") as string;
   const formPassword = formData.get("password") as string;
 
   // CHECK USER IN THE DB
   // const user = await db.getUser({email,password})
 
-  if (formUsername !== username) {
+  if (formEmail !== email) {
     return { error: "Wrong Credentials!" };
   }
 
   session.userId = "1";
-  session.username = formUsername;
+  session.username = formEmail;
   session.isLoggedIn = true;
 
   await session.save();
