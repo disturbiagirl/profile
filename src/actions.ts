@@ -32,9 +32,6 @@ export const login = async (data: Omit<User, "id" | "username">) => {
 
   const isPassCorrect = bcrypt.compareSync(data.password, user.password);
 
-  console.log(data.password);
-  console.log(user.password);
-
   if (!isPassCorrect)
     return {
       status: 400,
