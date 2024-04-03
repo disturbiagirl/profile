@@ -32,6 +32,8 @@ const LoginForm = () => {
         password: data.password,
       });
 
+      console.log(result);
+
       if (result.status === 200) {
         router.push("/");
       } else toast.warning(result.message);

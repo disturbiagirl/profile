@@ -5,8 +5,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { User } from "@prisma/client";
 import prisma from "./lib/prisma";
-
-let email = "test@test.com";
+import bcrypt from "bcrypt";
 
 export const getSession = async () => {
   const session = await getIronSession<SessionData>(cookies(), sessionOptions);
@@ -19,9 +18,7 @@ export const getSession = async () => {
 };
 
 export const login = async (data: Omit<User, "id" | "username">) => {
-  const session = await getSession();
-
-  const user = await prisma.user.findFirst({
+  const user = await prisma.user.findUnique({
     where: {
       email: data.email,
     },
@@ -33,9 +30,31 @@ export const login = async (data: Omit<User, "id" | "username">) => {
       message: "Invalid credentials",
     };
 
-  session.isLoggedIn = true;
+  const isPassCorrect = bcrypt.compareSync(data.password, user.password);
 
-  await session.save();
+  console.log(data.password);
+  console.log(user.password);
+
+  if (!isPassCorrect)
+    return {
+      status: 400,
+      message: "Invalid credentials",
+    };
+
+  try {
+    const session = await getSession();
+
+    session.isLoggedIn = true;
+    await session.save();
+
+    return {
+      status: 200,
+      message: "User logged in successfully",
+    };
+  } catch (error) {
+    console.log(error);
+    return { status: 500, message: "Something went wrong" };
+  }
 };
 
 export const logout = async () => {
