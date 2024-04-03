@@ -24,12 +24,22 @@ const Nav = async () => {
           >
             ABOUT
           </Link>
-          <Link
-            href="/login"
-            className="pt-3 text-gray-500  hover:text-blue-500 hover:underline hover:underline-offset-8"
-          >
-            LOGIN
-          </Link>
+          {!session.isLoggedIn && (
+            <Link
+              href="/login"
+              className="pt-3 text-gray-500  hover:text-blue-500 hover:underline hover:underline-offset-8"
+            >
+              LOGIN
+            </Link>
+          )}
+          {session.isLoggedIn && (
+            <Link
+              href="/profile"
+              className="pt-3 text-gray-500  hover:text-blue-500 hover:underline hover:underline-offset-8"
+            >
+              MY PROFILE
+            </Link>
+          )}
         </ul>
         {session.isLoggedIn && <LogoutForm />}
       </nav>
