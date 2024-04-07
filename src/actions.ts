@@ -17,6 +17,22 @@ export const getSession = async () => {
   return session;
 };
 
+export const getUserData = async (userId: string) => {
+  const id = Number(userId);
+  const user = await prisma.user.findUnique({
+    where: {
+      id,
+    },
+    select: {
+      id: true,
+      username: true,
+      email: true,
+    },
+  });
+
+  return user;
+};
+
 export const login = async (data: Omit<User, "id" | "username">) => {
   const user = await prisma.user.findUnique({
     where: {
