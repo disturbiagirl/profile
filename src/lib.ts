@@ -3,6 +3,7 @@ import { SessionOptions } from "iron-session";
 export interface SessionData {
   userId?: string;
   username?: string;
+  email?: string;
   isLoggedIn: boolean;
 }
 

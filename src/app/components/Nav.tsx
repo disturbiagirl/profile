@@ -34,7 +34,7 @@ const Nav = async () => {
           )}
           {session.isLoggedIn && (
             <Link
-              href="/profile"
+              href={`/profile/${session.userId}`}
               className="pt-3 text-gray-500  hover:text-blue-500 hover:underline hover:underline-offset-8"
             >
               MY PROFILE

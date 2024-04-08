@@ -58,6 +58,10 @@ export const login = async (data: Omit<User, "id" | "username">) => {
     const session = await getSession();
 
     session.isLoggedIn = true;
+    session.userId = user.id.toString();
+    session.username = user.username;
+    session.email = user.email;
+
     await session.save();
 
     return {

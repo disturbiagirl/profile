@@ -14,7 +14,7 @@ export default async function Profile({ params }: { params: { id: string } }) {
 
   return (
     <div className="w-11/12 mx-auto md:w-10/12 lg:w-9/12 flex items-center justify-center p-6">
-      <p>your profile</p>
+      <p>your profile {user?.username} </p>
     </div>
   );
 }
