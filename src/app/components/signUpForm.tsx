@@ -23,7 +23,7 @@ const FormSchema = z
     repeatPassword: z.string(),
   })
   .refine((data) => data.password === data.repeatPassword, {
-    message: "Password and confirm password doesn't match",
+    message: "Password and confirm password does not match",
     path: ["repeatPassword"],
   });
 
