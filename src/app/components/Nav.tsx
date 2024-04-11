@@ -40,6 +40,14 @@ const Nav = async () => {
               MY PROFILE
             </Link>
           )}
+          {session.isLoggedIn && (
+            <Link
+              href={`/calendar/${session.userId}`}
+              className="pt-3 text-gray-500  hover:text-blue-500 hover:underline hover:underline-offset-8"
+            >
+              CALENDAR
+            </Link>
+          )}
         </ul>
         {session.isLoggedIn && <LogoutForm />}
       </nav>
