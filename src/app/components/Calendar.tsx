@@ -53,6 +53,7 @@ export default function Calendar() {
   }, []);
 
   function handleDateClick(arg: { date: Date; allDay: boolean }) {
+    console.log(allEvents);
     setNewEvent({
       ...newEvent,
       start: arg.date,

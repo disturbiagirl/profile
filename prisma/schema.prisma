@@ -16,3 +16,10 @@ model User {
   username String
   password String
 }
+
+model Event {
+  id     Int      @id @default(autoincrement())
+  title  String
+  start  DateTime
+  allDay Boolean
+}
