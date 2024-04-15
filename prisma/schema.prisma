@@ -22,4 +22,5 @@ model Event {
   title  String
   start  DateTime
   allDay Boolean
+  postId Int?
 }
