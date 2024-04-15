@@ -10,6 +10,7 @@ import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon, ExclamationTriangleIcon } from "@heroicons/react/20/solid";
 import { EventSourceInput } from "@fullcalendar/core/index.js";
+import { createEvent } from "@/lib/createEvent";
 
 interface Event {
   title: string;
@@ -17,6 +18,14 @@ interface Event {
   allDay: boolean;
   id: number;
 }
+
+type EventList = {
+  title: string;
+  start: Date;
+  allDay: boolean;
+  postId: number;
+  id: number;
+};
 
 export default function Calendar() {
   const [events, setEvents] = useState([
@@ -52,8 +61,29 @@ export default function Calendar() {
     }
   }, []);
 
+  const saveEvent = async (data: EventList) => {
+    try {
+      const result = await createEvent(data);
+      if (result.status === 200) {
+        console.log("success");
+      } else {
+        console.log(result.message);
+      }
+    } catch (error) {
+      console.log("Something went wrong");
+      console.error(error);
+    }
+  };
+
   function handleDateClick(arg: { date: Date; allDay: boolean }) {
     console.log(allEvents);
+    saveEvent({
+      title: "new event",
+      start: arg.date,
+      allDay: arg.allDay,
+      postId: 17,
+      id: 3,
+    });
     setNewEvent({
       ...newEvent,
       start: arg.date,
