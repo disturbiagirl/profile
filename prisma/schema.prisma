@@ -24,3 +24,8 @@ model Event {
   allDay Boolean
   postId Int?
 }
+
+model Test {
+  id    Int  @id @default(autoincrement())
+  event Json
+}

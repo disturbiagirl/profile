@@ -11,6 +11,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon, ExclamationTriangleIcon } from "@heroicons/react/20/solid";
 import { EventSourceInput } from "@fullcalendar/core/index.js";
 import { createEvent } from "@/lib/createEvent";
+import { createTest } from "@/lib/createTest";
 
 interface Event {
   title: string;
@@ -27,6 +28,11 @@ type EventList = {
   id: number;
 };
 
+interface Test {
+  event: any;
+  id: number;
+}
+
 export default function Calendar() {
   const [events, setEvents] = useState([
     { title: "gym", id: "1" },
@@ -35,7 +41,7 @@ export default function Calendar() {
     { title: "grocery", id: "4" },
     { title: "meeting", id: "5" },
   ]);
-  const [allEvents, setAllEvents] = useState<Event[]>([]);
+  let [allEvents, setAllEvents] = useState<Event[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [idToDelete, setIdToDelete] = useState<number | null>(null);
@@ -45,6 +51,12 @@ export default function Calendar() {
     allDay: false,
     id: 0,
   });
+  const testEvent = {
+    title: "gym",
+    start: "2024-04-04T22:00:00.000Z",
+    allDay: true,
+    id: 1713305555200,
+  };
 
   useEffect(() => {
     let draggableEl = document.getElementById("draggable-el");
@@ -61,6 +73,20 @@ export default function Calendar() {
     }
   }, []);
 
+  const test = async (data: Test) => {
+    try {
+      const result = await createTest(data);
+      if (result.status === 200) {
+        console.log("success");
+      } else {
+        console.log(result.message);
+      }
+    } catch (error) {
+      console.log("Something went wrong");
+      console.error(error);
+    }
+  };
+
   const saveEvent = async (data: EventList) => {
     try {
       const result = await createEvent(data);
@@ -76,14 +102,16 @@ export default function Calendar() {
   };
 
   function handleDateClick(arg: { date: Date; allDay: boolean }) {
+    test({ event: JSON.stringify(allEvents), id: 1 });
     console.log(allEvents);
-    saveEvent({
-      title: "new event",
-      start: arg.date,
-      allDay: arg.allDay,
-      postId: 17,
-      id: 3,
-    });
+
+    // saveEvent({
+    //   title: "new event",
+    //   start: arg.date,
+    //   allDay: arg.allDay,
+    //   postId: 17,
+    //   id: 3,
+    // });
     setNewEvent({
       ...newEvent,
       start: arg.date,
