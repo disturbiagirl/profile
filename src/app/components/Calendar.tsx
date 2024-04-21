@@ -10,7 +10,7 @@ import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon, ExclamationTriangleIcon } from "@heroicons/react/20/solid";
 import { EventSourceInput } from "@fullcalendar/core/index.js";
-import { createEvent } from "@/lib/createEvent";
+// import { createEvent } from "@/lib/createEvent";
 import { createTest } from "@/lib/createTest";
 
 interface Event {
@@ -87,19 +87,19 @@ export default function Calendar() {
     }
   };
 
-  const saveEvent = async (data: EventList) => {
-    try {
-      const result = await createEvent(data);
-      if (result.status === 200) {
-        console.log("success");
-      } else {
-        console.log(result.message);
-      }
-    } catch (error) {
-      console.log("Something went wrong");
-      console.error(error);
-    }
-  };
+  // const saveEvent = async (data: EventList) => {
+  //   try {
+  //     const result = await createEvent(data);
+  //     if (result.status === 200) {
+  //       console.log("success");
+  //     } else {
+  //       console.log(result.message);
+  //     }
+  //   } catch (error) {
+  //     console.log("Something went wrong");
+  //     console.error(error);
+  //   }
+  // };
 
   function handleDateClick(arg: { date: Date; allDay: boolean }) {
     test({ event: JSON.stringify(allEvents), id: 1 });
