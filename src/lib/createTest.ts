@@ -7,7 +7,7 @@ export const createTest = async (data: Omit<Test, "id">) => {
   try {
     const response = await prisma.test.create({
       data: {
-        event: data.event,
+        event: data,
       },
     });
 

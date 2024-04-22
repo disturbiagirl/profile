@@ -12,6 +12,7 @@ import { CheckIcon, ExclamationTriangleIcon } from "@heroicons/react/20/solid";
 import { EventSourceInput } from "@fullcalendar/core/index.js";
 // import { createEvent } from "@/lib/createEvent";
 import { createTest } from "@/lib/createTest";
+// import { getEventData } from "@/lib/testFetchData";
 
 interface Event {
   title: string;
@@ -29,11 +30,15 @@ type EventList = {
 };
 
 interface Test {
-  event: any;
+  event: string;
   id: number;
 }
 
 export default function Calendar() {
+  // const fetchEvent = await getEventData();
+
+  // console.log(fetchEvent.event);
+
   const [events, setEvents] = useState([
     { title: "gym", id: "1" },
     { title: "doctor", id: "2" },
@@ -102,7 +107,8 @@ export default function Calendar() {
   // };
 
   function handleDateClick(arg: { date: Date; allDay: boolean }) {
-    test({ event: JSON.stringify(allEvents), id: 1 });
+    const json = JSON.stringify(allEvents);
+    test({ event: json, id: 1 });
     console.log(allEvents);
 
     // saveEvent({
